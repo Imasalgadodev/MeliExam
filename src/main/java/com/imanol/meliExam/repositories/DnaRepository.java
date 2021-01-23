@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Map;
 
-public interface DnaRepository extends CrudRepository<DnaEntity, String> {
-    @Query("SELECT mutant, COUNT(*) FROM dna BY mutant")
+public interface DnaRepository extends CrudRepository<Dna, String> {
+    @Query("SELECT mutant, COUNT(*) FROM Dna BY mutant")
     Map<Boolean, Integer> getMutantCounts();
 }

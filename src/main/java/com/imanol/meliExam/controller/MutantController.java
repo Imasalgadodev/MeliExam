@@ -1,7 +1,7 @@
 package com.imanol.meliExam.controller;
 
-import com.imanol.meliExam.model.Dna;
-import com.imanol.meliExam.repositories.DnaEntity;
+import com.imanol.meliExam.model.DnaModel;
+import com.imanol.meliExam.repositories.Dna;
 import com.imanol.meliExam.repositories.DnaRepository;
 import com.imanol.meliExam.utils.Mutant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +22,11 @@ public class MutantController {
     private DnaRepository repository;
 
     @PostMapping("/mutant")
-    public ResponseEntity<Void> isMutant (@RequestBody Dna dna){
+    public ResponseEntity<Void> isMutant (@RequestBody DnaModel dna){
         String id = String.join("", dna.getDna());
         boolean mutant = Mutant.isMutant(dna.getDna());
         if(!repository.existsById(id)) {
-            repository.save(new DnaEntity(id, mutant));
+            repository.save(new Dna(id, mutant));
         }
         if(mutant){
             return ResponseEntity.ok().build();

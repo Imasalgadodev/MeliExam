@@ -3,12 +3,10 @@ package com.imanol.meliExam.repositories;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "dna")
-public class DnaEntity implements Serializable {
+public class Dna implements Serializable {
 
     @Id
     private String id;
@@ -16,9 +14,9 @@ public class DnaEntity implements Serializable {
     @Column(name = "mutant")
     private boolean mutant;
 
-    public DnaEntity(){}
+    public Dna(){}
 
-    public DnaEntity(String id, boolean mutant) {
+    public Dna(String id, boolean mutant) {
         this.id = id;
         this.mutant = mutant;
     }
