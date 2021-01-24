@@ -1,7 +1,6 @@
 package com.imanol.meliExam.controller;
 
 import com.imanol.meliExam.model.DnaModel;
-import com.imanol.meliExam.model.StatsQueryModel;
 import com.imanol.meliExam.repositories.Dna;
 import com.imanol.meliExam.repositories.DnaRepository;
 import com.imanol.meliExam.utils.Mutant;
@@ -48,14 +47,26 @@ public class MutantController {
             mappedResult.put(isMutant, count);
         }
 
+        double count_mutant_dna = mappedResult.getOrDefault(true, 0L);
+        double count_human_dna = mappedResult.getOrDefault(false, 0L);
+        double ratio;
+
+        if(count_human_dna == 0) {
+            if(count_mutant_dna == 0) {
+                ratio = 1D;
+            } else {
+                ratio = Double.POSITIVE_INFINITY;
+            }
+        } else {
+            ratio = count_mutant_dna / count_human_dna;
+        }
+
         Map<String, Object> response = new HashMap<>();
-        Long count_mutant_dna = mappedResult.get(true);
-        Long count_human_dna = mappedResult.get(false);
-        double ratio =  count_mutant_dna.doubleValue() / count_human_dna.doubleValue();
 
         response.put("count_mutant_dna", count_mutant_dna);
         response.put("count_human_dna", count_human_dna);
         response.put("ratio", ratio);
+
         return ResponseEntity.ok(response);
     }
 

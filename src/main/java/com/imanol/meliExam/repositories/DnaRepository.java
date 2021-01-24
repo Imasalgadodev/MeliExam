@@ -1,6 +1,5 @@
 package com.imanol.meliExam.repositories;
 
-import com.imanol.meliExam.model.StatsQueryModel;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
